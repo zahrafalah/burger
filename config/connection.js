@@ -1,5 +1,7 @@
 // dependencies
 var mysql = require('mysql');
+// var keys = require('./keys.js');
+require("dotenv").config();
 
 var connection = mysql.createConnection({
     host: "localhost",
@@ -9,7 +11,8 @@ var connection = mysql.createConnection({
     user: "root",
   
     // Your password
-    password: keys.secretKey.connection_Key,
+    
+    password: process.env.MYSQL_KEY,
     database: "burgers_db"
   });
 
