@@ -3,18 +3,36 @@ var mysql = require('mysql');
 // var keys = require('./keys.js');
 require("dotenv").config();
 
-var connection = mysql.createConnection({
-    host: "localhost",
-    port: 3306,
+var connection;
+if (process.env.JAWSDB_URL){
+  connection = mysql.createConnection(process.env.JAWSDB_URL);
+}else {
+  connection = mysql.createConnection({
+        host: "localhost",
+        port: 3306,
+      
+        // Your username
+        user: "root",
+      
+        // Your password
+        
+        password: process.env.MYSQL_KEY,
+        database: "burgers_db"
+      });
+}
+
+// var connection = mysql.createConnection({
+//     host: "localhost",
+//     port: 3306,
   
-    // Your username
-    user: "root",
+//     // Your username
+//     user: "root",
   
-    // Your password
+//     // Your password
     
-    password: process.env.MYSQL_KEY,
-    database: "burgers_db"
-  });
+//     password: process.env.MYSQL_KEY,
+//     database: "burgers_db"
+//   });
 
 // connection.connect(function(err) {
 // 	if (err) {
